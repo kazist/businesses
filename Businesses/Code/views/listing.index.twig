@@ -1,0 +1,63 @@
+{# empty Twig template #}
+
+{{ set_assets('applications/Businesses/assets/css/business.css') }}
+
+{% set item_url =  generate_url('businesses.businesses.detail', {'id':items.0.id})  %}
+
+<h1 class="component-header">Businesses</h1>
+
+<div class="business-list">
+    {% if items|length > 0 %}
+
+
+        {% for key,item in items %}
+
+            {% set item_url = generate_url('businesses.businesses.detail', {'id':item.id} ) %}
+
+
+            <div class="business">
+
+                <a href="{{ item_url }}" title="{{ item.name }}">
+                    <img src="{{ resized_image(item.logo.file, 100,100) }}" alt="{{ item.name }}" title="{{ item.name }}" align="left">
+                </a>
+
+                <span class="business-title">
+                    <h4>
+                        <a href="{{ item_url }}" title="{{ item.name }}">
+                            {{ item.name }} 
+                        </a>
+                    </h4>
+                </span>
+
+                <div>
+
+                    <p>
+                        {{ item.profile|striptags|truncate(200)|raw }}
+                    </p>
+
+                    <span class="text-capitalize">
+                        <a>
+                            <i class="fa fa-map-marker"></i> {{ item.country.name|truncate(15) }}
+                        </a>
+                    </span>
+
+                    <span class="text-capitalize">
+                        <i class="fa fa-clock-o"></i> {{ item.date_created|date('d M Y H:i:s') }}
+                    </span>     
+
+                </div>
+
+                <a class="btn btn-success btn-flat btn-sm" href="{{ item_url }}" title="View Business">
+                    View Business
+                </a>
+
+                <div class="clearfix"></div>
+            </div>
+
+        {% endfor %}
+    {% endif %}
+</div>
+
+<div class="clearfix"></div>
+
+{% include "items.pagination.twig"%}

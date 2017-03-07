@@ -1,0 +1,76 @@
+{# empty Twig template #}
+{% import "form.macro.twig" as forms %}
+
+{{ set_assets('applications/Businesses/assets/css/business.css') }}
+{{ set_assets('applications/Businesses/assets/js/business.js') }}
+{{ set_assets('applications/Businesses/assets/js/jquery.elevatezoom.js') }}
+
+<h1>{{ item.title }}</h1>
+
+<div class="business-posted-date">
+    <i class="fa fa-clock-o"></i> Posted:  {{ item.date_created|date('d M Y H:i:s') }} &nbsp;&nbsp;
+</div>
+
+<div>
+    <div class="col-sm-8">
+
+        <div class="form-group">
+            <label>Title</label><br>
+            {{ item.title }}
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="well well-sm">Photos </div>
+        <div class="business-photos">
+            {% if item.photos|length > 0 %}
+                {% for photo in item.photos %}
+                    <div class="nav-business-image" data-image="{{ resized_image(photo.file) }}" data-zoom-image="{{ resized_image(photo.file) }}">
+                        <img src="{{ resized_image(photo.file,48,48) }}" alt="{{ item.title }}" title="{{ item.title }}" />
+                        <input type="hidden" value="{{ resized_image(photo.file,300,300) }}">
+                    </div>
+                {% endfor %}
+            {% else %}
+                No Photos
+            {% endif %}
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="well well-sm">Description</div>
+        <div class="business-description">
+            {{ item.description|raw }}
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+    <div class="col-sm-4">
+        {% include "business.badge.vertical.twig" ignore missing with {'business_id': item.business_id}  %}
+    </div>
+</div>
+
+
+
+<div> 
+    <br>
+    <div class="clearfix"></div>
+    <div class="well well-sm">Related Products</div>
+    <br>
+    <br>
+    {% include "business.products.twig" ignore missing with {'business_id': item.id}  %}
+</div> 
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBM7aNBTgvwJyUwTqkbwAYa8mC7gZRItPs"></script>
+
+<script>
+    function initialize() {
+        var mapCanvas = document.getElementById('map-canvas');
+        var mapOptions = {
+            center: new google.maps.LatLng({{ item.latitude|default('-1.2833300') }}, {{ item.longitude|default('36.8166700') }}),
+            zoom: 6,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>

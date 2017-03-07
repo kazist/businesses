@@ -1,0 +1,10 @@
+{
+    "name": "categories",
+    "title": "Categories Listing",
+    "explanation": "Categories Listing",
+    "description": "Categories Listing",
+    "version": 1,
+    "icon": "assets\/businesses\/addons\/categories\/icon.png",
+    "extension": "addon",
+    "path": "businesses\/addons\/categories\/"
+}

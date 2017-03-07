@@ -1,0 +1,38 @@
+{# empty Twig template #}
+<h1>Last Businesses</h1>
+<br>
+
+<br>
+<!--{% set all_url = generate_url('businesses.businesses') %}--> 
+<p>&nbsp;</p>
+<br>
+<div>
+    <!-- {% if( businesses|length > 0 ) %} --> 
+    <!-- {% for business in businesses %} -->
+    <!--{% set business_url = generate_url('businesses.businesses.detail', {'id': business.id}) %}-->
+    <br>
+
+    <br>
+    <div>
+        <br>
+        <a href="{{ business_url }}">
+            <br>
+            <img src="{{ uri.base.full}}{{business.image_file}}" align="left" width="100px" />
+            <br>
+        </a>
+        <a href="{{ business_url }}">
+            <br>
+            <strong>{{ business.title }}</strong> 
+            <br>
+        </a>
+        <br/> 
+        {{ business.profile|striptags|truncate(250) }}
+        <div style="clear:both;"></div>
+        <br>
+        <hr /></div>
+    <!-- {% endfor %} --> 
+    <!-- {% endif %} --> </div>
+<br>
+
+<br>
+<a href="{{ all_url }}">View All</a>

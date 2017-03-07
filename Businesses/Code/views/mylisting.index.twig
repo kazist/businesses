@@ -1,0 +1,106 @@
+{# empty Twig template #}
+
+{{ set_assets('applications/Businesses/assets/css/business.css') }}
+
+{% set params = {'view':'mylisting'} %}
+
+<form action="{{ generate_url('businesses.businesses', params) }}" method="POST">
+
+    <h1 class="component-header">My Listing</h1>
+    <a href="{{ generate_url('businesses.businesses.add')}}" class="btn btn-default pull-right">
+        <i class="fa fa-plus"></i>
+        Add An Business
+    </a>
+
+    <div class="clr"></div>
+    <br>
+
+    <div class="table-responsive">
+        <table class="table table-condensed table-bordered">
+            <thead>
+                <tr>
+                    <th align="left">Logo</th>
+                    <th align="left">Name</th>
+                    <th>Package</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>Paid</th>
+                    <th>Hits</th>
+                    <th>Published</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead> 
+            <tbody>
+                {% if items|length > 0 %}
+                    {% for key,item in items %}
+
+                        {% set item_url = generate_url('businesses.businesses.detail', null, 0, item) %}
+
+                        <tr>
+                            <td class="text-center">
+                                <a href="{{ item_url }}" title='{{ item.title }}'>
+                                    <img src="{{ resized_image(item.logo_file, 100,50) }}" alt="{{ item.title }}"  title="{{ item.title }}">
+                                </a>
+                            </td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.package_id_title }}</td>
+                            <td>{{ item.country_id_title }}</td>
+                            <td>{{ item.city }}</td>
+                            <td><label>{% if item.payment_status %}Yes{% else %}No{% endif %}</label></td>
+                            <td>{{ item.hit }}</td>
+                            <td><label>{% if item.published %}Yes{% else %}No{% endif %}</label></td>
+                            <td>
+                                <a class="btn btn-default btn-xs" href="{{ generate_url('businesses.businesses.edit',{'id':item.id}) }}">
+                                    <i class="fa fa-pencil"></i>
+                                    Edit
+                                </a>
+                                <a class="btn btn-default btn-xs" href="{{ generate_url('businesses.businesses.detail',{'id':item.id,'view':'payment'}) }}">
+                                    <i class="fa fa-pencil"></i>
+                                    Pay for business
+                                </a>
+                            </td>
+                        <tr>
+
+                        {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td class="text-center" colspan="10">
+                            <br>
+                            <h2> There are no Business listing added yet.</h2>
+                            <a href="{{ generate_url('businesses.businesses.add')}}" class="btn btn-default">
+                                <i class="fa fa-plus"></i>
+                                Add An Business
+                            </a>
+                            <br>
+                        </td>
+                    <tr>
+                    {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="clearfix"></div>
+
+    {% include "items.pagination.twig"%}
+
+    <div class="clearfix"></div>
+
+    {{ forms.input('_token' ) }} 
+
+</form>
+
+
+
+<style>
+    .vehicle{
+        border: 1px solid #EFEFEF;
+        margin-bottom:15px;
+        background:white;
+    }
+    .vehicle img{
+        border: 1px solid #EFEFEF;
+        margin:5px;
+    }
+</style>
+
+

@@ -1,0 +1,10 @@
+{
+    "title": "Business",
+    "alias": "business",
+    "table_name": "businesses_businesses",
+    "title_field": "name",
+    "content_field": "profile",
+    "image_field": "logo",
+    "published": "1",
+    "is_processed": "0"
+}

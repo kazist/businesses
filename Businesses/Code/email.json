@@ -1,0 +1,73 @@
+{
+    "layout": [{
+            "tracking_id": "1",
+            "unique_name": "businesses.businesses.sendmessage",
+            "subject": "Advert Message : {{ message.subject }}",
+            "sms": "Advert Message : {{ message.subject }}",
+            "body": "<p>Hi {{user.name}},<\/p>\r\n<p>You have a new message For On You Business Post.<\/p>\r\n<p>&nbsp;<\/p>\r\n<p><strong>Message:<\/strong> {{message.message}}<\/p>\r\n<p><strong>Email:<\/strong> {{message.email}}<\/p>\r\n<p><strong>Phone:<\/strong> {{message.phone}}<\/p>\r\n<p>&nbsp;<\/p>\r\n<p>To View your business click link below.<\/p>\r\n<p><a href=\"{{business.url}}\">{{business.title}}<\/a><\/p>"
+        }, {
+            "tracking_id": "2",
+            "unique_name": "businesses.businesses.sendmessage.thankyou",
+            "subject": "Message sent Successful : {{ message.subject }}",
+            "sms": "Message sent Successful : {{ message.subject }}",
+            "body": "<p>Hi {{message.name}},<\/p>\r\n<p>Your&nbsp;message was sent Successfully.&nbsp;<\/p>\r\n<p><strong>Message:<\/strong> {{message.message}}<\/p>\r\n<p><strong>Email:<\/strong> {{message.email}}<\/p>\r\n<p><strong>Phone:<\/strong> {{message.phone}}<\/p>\r\n<p>To View this&nbsp;business click link below.<\/p>\r\n<p><a href=\"{{business.url}}\">{{business.title}}<\/a><\/p>"
+        }, {
+            "tracking_id": "3",
+            "unique_name": "businesses.businesses.paymentsuccessful",
+            "subject": "Payment Process Completed Successfully",
+            "sms": "Payment Process Completed Successfully",
+            "body": "Client {{ user.name }},\r\n\r\nYour payment for Advert was completed successful.\r\n\r\nThank you for paying for you advert  it will now appear in featured adverts list.\r\n\r\n If you need any help, please let us know so that we can assist you.\r\n\r\nThanks,"
+        }, {
+            "tracking_id": "4",
+            "unique_name": "businesses.businesses.paymentfail",
+            "subject": "Payment Process Failed",
+            "sms": "Payment Process Failed",
+            "body": "Client {{ user.name }},\r\n\r\nYour payment for Advert did not process. This is sometimes due to payment of less amount, fraudalent Payment, credit card decline, change in expiration date or system issue.\r\n\r\nFirst, please reply back to confirm that you received this notice and that you are working to resolve the issue.\r\n\r\nAlso Contact Administrator to check the issue once more.\r\n\r\n If you need any help, please let us know so that we can assist you.\r\n\r\nThanks,"
+        }, {
+            "tracking_id": "5",
+            "unique_name": "businesses.businesses.paymentcancel",
+            "subject": "Payment Process Canceled",
+            "sms": "Payment Process Canceled",
+            "body": "Client {{ user.name }},\r\n\r\nYour payment for Advert did not process. The process was canceled.\r\n\r\nPlease Verify if You it was initiated by you.\r\n\r\nAlso Contact Administrator to check the issue once more.\r\n\r\n If you need any help, please let us know so that we can assist you.\r\n\r\nThanks,"
+        }, {
+            "tracking_id": "6",
+            "unique_name": "businesses.businesses.paymentcomplete",
+            "subject": "Payment Process Completed",
+            "sms": "Payment Process Completed",
+            "body": "Client {{ user.name }},\r\n\r\nYour payment for Advert was completed successful.\r\n\r\nThank you upgrading you can start to build you team and use our website as an upgraded member.\r\n\r\n If you need any help, please let us know so that we can assist you.\r\n\r\nThanks,"
+        }],
+    "scheduled": [{
+            "tracking_id": "1",
+            "unique_name": "businesses.businesses.scheduled",
+            "subject": "You Need Help setting your Business {{ name }}",
+            "body": "<p>Hi {{user.name}},<\/p>\r\n<p>You have a new message For On You Business Post.<\/p>\r\n<p>&nbsp;<\/p>\r\n<p><strong>Message:<\/strong> {{message.message}}<\/p>\r\n<p><strong>Email:<\/strong> {{message.email}}<\/p>\r\n<p><strong>Phone:<\/strong> {{message.phone}}<\/p>\r\n<p>&nbsp;<\/p>\r\n<p>To View your business click link below.<\/p>\r\n<p><a href=\"{{business.url}}\">{{business.title}}<\/a><\/p>",
+            "date_field": "date_created",
+            "user_field": "created_by",
+            "is_repeated": "1",
+            "wait_period": "3",
+            "repeat_after": "3",
+            "repeat_stop": "2",
+            "limit": "4",
+            "email_limit": "4"
+        }],
+    "autonewsletter": [{
+            "tracking_id": "1",
+            "unique_name": "businesses.businesses.autonewsletter",
+            "subject": "You Need Help setting your Business {{ name }}",
+            "body": "<h1>Last Businesses</h1>\n\n{% set all_url = generate_url('business.business.business') %}\n\n\n<p>&nbsp;</p>\n<div><!-- {% if( businesses|length > 0 ) %} --> \n<!-- {% for business in businesses %} -->\n\n{% set business_url = generate_url('business.business.business.detail&id=' ~ business.id) %}\n\n<div>\n\n<a href=\"{{ business_url }}\">\n<img src=\"{{ uri.base.full}}{{business.image_file}}\" align=\"left\" width=\"100px\" />\n</a>\n<a href=\"{{ business_url }}\">\n <strong>{{ business.title }}</strong> \n</a>\n<br /> \n{{ business.profile|striptags|truncate(250) }}\n<div style=\"clear:both;\"></div>\n<hr /></div>\n<!-- {% endfor %} --> \n<!-- {% endif %} --> </div>\n\n<a href=\"{{ all_url }}\">View All</a>",
+            "frequency": "weekly",
+            "parameter_name": "businesses",
+            "category_field": "category_id",
+            "table_name": "businesses_businesses",
+            "limit": "10",
+            "email_limit": "10",
+            "category_table": "businesses_categories",
+            "category_table_mainfield": "title"
+        }],
+    "harvester": [{
+            "tracking_id": "1",
+            "title": "Business Owners",
+            "user_field": "created_by",
+            "email_field": "email"
+        }]
+}

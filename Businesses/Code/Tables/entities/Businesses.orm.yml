@@ -1,0 +1,157 @@
+Businesses\Businesses\Code\Tables\Businesses:
+  table: businesses_businesses
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    category_id:
+      name: category_id
+      type: integer
+      length: 11
+      nullable: true
+    name:
+      name: name
+      type: string
+      length: 255
+      nullable: false
+    profile:
+      name: profile
+      type: text
+      nullable: false
+    physical_location:
+      name: physical_location
+      type: text
+      nullable: true
+    address:
+      name: address
+      type: text
+      nullable: true
+    phone:
+      name: phone
+      type: string
+      length: 255
+      nullable: true
+    email:
+      name: email
+      type: string
+      length: 255
+      nullable: true
+    website:
+      name: website
+      type: string
+      length: 255
+      nullable: true
+    country_id:
+      name: country_id
+      type: integer
+      length: 11
+      nullable: true
+    location_id:
+      name: location_id
+      type: integer
+      length: 11
+      nullable: true
+    city:
+      name: city
+      type: string
+      length: 255
+      nullable: true
+    latitude:
+      name: latitude
+      type: string
+      length: 255
+      nullable: true
+    longitude:
+      name: longitude
+      type: string
+      length: 255
+      nullable: true
+    logo:
+      name: logo
+      type: integer
+      length: 11
+      nullable: true
+    package_id:
+      name: package_id
+      type: integer
+      length: 11
+      nullable: true
+    package_price_id:
+      name: package_price_id
+      type: integer
+      length: 11
+      nullable: true
+    payment_amount:
+      name: payment_amount
+      type: integer
+      length: 11
+      nullable: true
+    payment_stage:
+      name: payment_stage
+      type: string
+      length: 255
+      nullable: true
+    payment_status:
+      name: payment_status
+      type: integer
+      length: 11
+      nullable: true
+    payment_date:
+      name: payment_date
+      type: datetime
+      nullable: true
+    payment_expiry:
+      name: payment_expiry
+      type: datetime
+      nullable: true
+    hit:
+      name: hit
+      type: integer
+      length: 11
+      nullable: true
+    published:
+      name: published
+      type: integer
+      length: 11
+      nullable: true
+    featured:
+      name: featured
+      type: integer
+      length: 11
+      nullable: true
+    created_by:
+      name: created_by
+      type: integer
+      length: 11
+      nullable: false
+    date_created:
+      name: date_created
+      type: datetime
+      nullable: false
+    modified_by:
+      name: modified_by
+      type: integer
+      length: 11
+      nullable: false
+    date_modified:
+      name: date_modified
+      type: datetime
+      nullable: false
+  indexes:
+    category_id_index:
+      columns: [category_id]
+    country_id_index:
+      columns: [country_id]
+    package_id_index:
+      columns: [package_id]
+    package_price_id_index:
+      columns: [package_price_id]
+  lifecycleCallbacks:
+    prePersist:
+      - onPrePersist
+      - onPrePersistCallbacks
+    preUpdate:
+      - onPreUpdate
+      - onPreUpdateCallbacks

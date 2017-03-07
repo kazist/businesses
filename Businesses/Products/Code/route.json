@@ -1,0 +1,282 @@
+{
+    "frontend": [{
+            "title": "Product List",
+            "description": "Management of Products.",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\ProductsController::indexAction",
+            "permissions": "can_view, can_viewown",
+            "unique_name": "businesses.businesses.products",
+            "route": "businesses/businesses/products",
+            "arguments": "",
+            "keywords": "product, list",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_view", "can_viewown"],
+                "ADMIN": ["can_view", "can_viewown"],
+                "MODERATOR": ["can_view", "can_viewown"],
+                "USER": ["can_view", "can_viewown"]
+            }
+        }, {
+            "title": "Add Product ",
+            "description": "Add Product  .",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\ProductsController::addAction",
+            "unique_name": "businesses.businesses.products.add",
+            "route": "businesses/businesses/products/add",
+            "permissions": "can_add",
+            "arguments": {},
+            "keywords": "product,add",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_add"],
+                "ADMIN": ["can_add"],
+                "MODERATOR": ["can_add"],
+                "USER": ["can_add"]
+            }
+        }, {
+            "title": "Edit Product {{ item.name }}",
+            "description": "Edit Product {{ item.name }}.",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\ProductsController::editAction",
+            "unique_name": "businesses.businesses.products.edit",
+            "route": "businesses/businesses/products/edit/{id}",
+            "permissions": "can_add, can_write, can_writeown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "product, list, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_add", "can_write", "can_writeown"],
+                "ADMIN": ["can_add", "can_write", "can_writeown"],
+                "MODERATOR": ["can_add", "can_write", "can_writeown"],
+                "USER": ["can_add", "can_writeown"]
+            }
+        }, {
+            "title": "Product Detail: {{ item.name }}",
+            "description": "Product Detail: {{ item.name }}",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\ProductsController::detailAction",
+            "unique_name": "businesses.businesses.products.detail",
+            "route": "businesses/businesses/products/detail/{id}",
+            "permissions": "can_view, can_viewown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "product, list, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_view", "can_viewown"],
+                "ADMIN": ["can_view", "can_viewown"],
+                "MODERATOR": ["can_view", "can_viewown"],
+                "USER": ["can_view", "can_viewown"]
+            }
+        }, {
+            "title": "Product Delete: {{ item.name }}",
+            "description": "Product Delete: {{ item.name }}",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\ProductsController::deleteAction",
+            "unique_name": "businesses.businesses.products.delete",
+            "route": "businesses/businesses/products/delete/{id}",
+            "permissions": "can_delete, can_deleteown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "product, delete, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_delete", "can_deleteown"],
+                "ADMIN": ["can_delete", "can_deleteown"],
+                "MODERATOR": ["can_delete", "can_deleteown"],
+                "USER": ["can_deleteown"]
+            }
+        }, {
+            "title": "Product Delete: {{ item.name }}",
+            "description": "Product Delete: {{ item.name }}",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\ProductsController::deleteproductAction",
+            "unique_name": "businesses.businesses.products.deleteproduct",
+            "route": "businesses/businesses/products/deleteproduct/{product_id}",
+             "permissions": "can_delete, can_deleteown",
+            "arguments": {
+                "product_id": null
+            },
+            "keywords": "product, delete, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_delete", "can_deleteown"],
+                "ADMIN": ["can_delete", "can_deleteown"],
+                "MODERATOR": ["can_delete", "can_deleteown"],
+                "USER": ["can_deleteown"]
+            }
+        }, {
+            "title": "Product Delete Images: {{ item.name }}",
+            "description": "Product Delete Images: {{ item.name }}",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\ProductsController::deleteimageAction",
+            "unique_name": "businesses.businesses.products.deleteimage",
+            "route": "businesses/businesses/products/deleteimage/{product_id}/{product_image_id}",
+             "permissions": "can_delete, can_deleteown",
+            "arguments": {
+                "product_id": null,
+                "product_image_id": null
+            },
+            "keywords": "product, delete, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_delete", "can_deleteown"],
+                "ADMIN": ["can_delete", "can_deleteown"],
+                "MODERATOR": ["can_delete", "can_deleteown"],
+                "USER": ["can_deleteown"]
+            }
+        }, {
+            "title": "Product Save: {{ item.name }}",
+            "description": "Product Save: {{ item.name }}",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\ProductsController::saveAction",
+            "unique_name": "businesses.businesses.products.save",
+            "route": "businesses/businesses/products/save",
+            "permissions": "can_add, can_write, can_writeown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "product, save, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_add", "can_write", "can_writeown"],
+                "ADMIN": ["can_add", "can_write", "can_writeown"],
+                "MODERATOR": ["can_add", "can_write", "can_writeown"],
+                "USER": ["can_add", "can_writeown"]
+            }
+        }]
+    ,
+    "backend": [{
+            "title": "General Tasks",
+            "description": "General Tasks.",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\Admin\\ProductsController::taskAction",
+            "unique_name": "admin.businesses.businesses.products.task",
+            "route": "admin/businesses/businesses/products/task",
+            "permissions": "can_write",
+            "arguments": "",
+            "keywords": "products, task",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_write"],
+                "ADMIN": ["can_write"]
+            }
+        }, {
+            "title": "Product List",
+            "description": "Management of Products.",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\Admin\\ProductsController::indexAction",
+            "permissions": "can_view, can_viewown",
+            "unique_name": "admin.businesses.businesses.products",
+            "route": "admin/businesses/businesses/products",
+            "arguments": "",
+            "keywords": "product, list",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_view", "can_viewown"],
+                "ADMIN": ["can_view", "can_viewown"]
+            }
+        }, {
+            "title": "Add Product ",
+            "description": "Add Product .",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\Admin\\ProductsController::addAction",
+            "unique_name": "admin.businesses.businesses.products.add",
+            "route": "admin/businesses/businesses/products/add",
+            "permissions": "can_add",
+            "arguments": {},
+            "keywords": "product,add",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_add"],
+                "ADMIN": ["can_add"]
+            }
+        }, {
+            "title": "Edit Product {{ item.name }}",
+            "description": "Edit Product {{ item.name }}.",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\Admin\\ProductsController::editAction",
+            "unique_name": "admin.businesses.businesses.products.edit",
+            "route": "admin/businesses/businesses/products/edit/{id}",
+            "permissions": "can_add, can_write, can_writeown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "product, list, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_add", "can_write", "can_writeown"],
+                "ADMIN": ["can_add", "can_write", "can_writeown"]
+            }
+        }, {
+            "title": "Product Detail: {{ item.name }}",
+            "description": "Product Detail: {{ item.name }}",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\Admin\\ProductsController::detailAction",
+            "unique_name": "admin.businesses.businesses.products.detail",
+            "route": "admin/businesses/businesses/products/detail/{id}",
+            "permissions": "can_view, can_viewown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "product, list, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_view", "can_viewown"],
+                "ADMIN": ["can_view", "can_viewown"]
+            }
+        }, {
+            "title": "Product Delete: {{ item.name }}",
+            "description": "Product Delete: {{ item.name }}",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\Admin\\ProductsController::deleteAction",
+            "unique_name": "admin.businesses.businesses.products.delete",
+            "route": "admin/businesses/businesses/products/delete/{id}",
+            "permissions": "can_delete, can_deleteown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "product, delete, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_delete", "can_deleteown"],
+                "ADMIN": ["can_delete", "can_deleteown"]
+            }
+        }, {
+            "title": "Product Save: {{ item.name }}",
+            "description": "Product Save: {{ item.name }}",
+            "controller": "Businesses\\Businesses\\Products\\Code\\Controllers\\Admin\\ProductsController::saveAction",
+            "unique_name": "admin.businesses.businesses.products.save",
+            "route": "admin/businesses/businesses/products/save",
+            "permissions": "can_add, can_write, can_writeown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "product, save, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_add", "can_write", "can_writeown"],
+                "ADMIN": ["can_add", "can_write", "can_writeown"]
+            }
+        }]
+} 	

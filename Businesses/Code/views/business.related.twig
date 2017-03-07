@@ -1,0 +1,54 @@
+{# empty Twig template #}
+{{ set_assets('applications/Businesses/assets/css/business.css') }}
+
+{% set params = { 'business_id': business_id, 'action': 'related' } %}
+{% set businesses = callFunction( "Businesses.Businesses.Code.Models.BusinessesModel", 'getBusinesses', params ) %}
+
+
+<div class="business-list">
+    {% if businesses|length > 0 %}
+        {% for business in businesses %}
+            {% set business_url =  generate_url('businesses.businesses.detail', {'id': business.id}) %}
+            <div class="col-sm-4">
+                <div class="business">
+
+                    <div class="business-title">
+                        <h3>
+                            <a href="{{ business_url }}" title="{{ business.name }} ">
+                                {{ business.name }} 
+                            </a>
+                        </h3>
+                    </div>
+
+                    <div class="business-img-wrapper">
+                        <a href="{{ business_url }}" title="{{ business.name }}">
+                            <img src="{{ resized_image(business.logo.file, 300,300) }}" alt="{{ business.name }}" title="{{ business.name }}">
+                        </a>
+                    </div>
+
+                    <div class="business-update-info">
+                        <div class="text-capitalize">
+                            <a>
+                                <i class="fa fa-map-marker"></i> {{ business.country.name|truncate(15) }}
+                            </a>
+                        </div>
+
+                        <div class="text-capitalize">
+                            <i class="fa fa-clock-o"></i> {{ business.date_created|date('d M Y H:i') }}
+                        </div>
+
+                    </div>
+
+                    <a class="btn btn-success btn-flat btn-sm col-md-12" href="{{ business_url }}" title="View Business">
+                        View Business
+                    </a>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        No Products
+    {% endif %}
+</div>
+

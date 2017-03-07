@@ -1,0 +1,34 @@
+{
+    "BusinessesBusinesses": {
+        "namespace": "Businesses\\Businesses",
+        "controller": "BusinessesController"
+    },
+    "BusinessesBusinessesImages": {
+        "namespace": "Businesses\\Businesses\\Images",
+        "controller": "ImagesController"
+    },
+    "BusinessesCategories": {
+        "namespace": "Businesses\\Categories",
+        "controller": "CategoriesController"
+    },
+    "BusinessesPackages": {
+        "namespace": "Businesses\\Packages",
+        "controller": "PackagesController"
+    },
+    "BusinessesPackagesPrices": {
+        "namespace": "Businesses\\Packages\\Prices",
+        "controller": "PricesController"
+    },
+    "BusinessesBusinessesProducts": {
+        "namespace": "Businesses\\Businesses\\Products",
+        "controller": "ProductsController"
+    },
+    "BusinessesBusinessesProductsImages": {
+        "namespace": "Businesses\\Businesses\\Products\\Images",
+        "controller": "ImagesController"
+    },
+    "BusinessesBusinessesMessages": {
+        "namespace": "Businesses\\Businesses\\Messages",
+        "controller": "MessagesControlller"
+    }
+}

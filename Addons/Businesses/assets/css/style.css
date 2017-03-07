@@ -1,0 +1,83 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 29, 2015, 4:22:26 PM
+    Author     : sbc
+*/
+.kazi-businesses{
+
+}
+
+.blog-business::before,
+.blog-business::after,
+.blog-business-form::before,
+.blog-business-form::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.blog-business ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.blog-business img{
+    opacity: 1;
+    filter: Alpha(opacity=100);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.blog-business img.avatar {
+    position: relative;
+    float: left;
+    margin-left: 0;
+    margin-top: 0;
+    width: 48px;
+    height: 48px;
+}
+
+.blog-business .post-businesses{
+    border: 1px solid #eee;
+    margin-bottom: 15px;
+    margin-left: 50px;
+    margin-right: 0px;
+    padding: 5px;
+    position: relative;
+    background: #fff;
+    color: #6b6e80;
+    position: relative;
+}
+
+.blog-business .meta {
+    font-size: 13px;
+    color: #aaaaaa;
+    border-top: 1px solid #eee;
+}
+
+.blog-business ul.businesses ul{
+    list-style-type: none;
+    padding: 0;
+    margin-left: 85px;
+}
+
+.blog-business-form{
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 40px;
+}
+
+.blog-business h3,
+.blog-business-form h3{
+    margin-bottom: 40px;
+    font-size: 26px;
+    line-height: 30px;
+    font-weight: 800;
+}

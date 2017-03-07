@@ -1,0 +1,37 @@
+
+{{ set_assets('applications/Businesses/Addons/Category/assets/css/style.css') }}
+
+<div id="menu" class="block_business_category">
+    <div class="panel list-group">
+        {% if categories|length > 0 %}
+            {% for category in categories %}
+
+                {% if category.children|length > 0 %}
+                    {% set cat_link = '#' %}
+                {% else %}
+                    {% set cat_link = generate_url( 'cms.articles', {'category_id':category.id}) %}
+                {% endif %}
+
+                <a href="{{ cat_link }}" class="list-group-item" {% if category.children|length > 0 %}data-toggle="collapse" data-target="#sm{{ category.id }}" data-parent="#menu"{% endif %} title="{{ category.title }}">
+                    {{ category.title }} 
+                    {% if category.children|length > 0 %}
+                        <span class="label label-info">{{ category.children }}</span> 
+                    {% endif %}
+                    <span class="glyphicon glyphicon-chevron pull-right"></span>
+                </a>
+
+                {% if category.children|length > 0 %}
+                    <div id="sm{{ category.id }}" class="sublinks collapse">
+                        {% for child in category.children %}
+                            {% set child_link =  generate_url( 'cms.articles', {'category_id':child.id}) %}
+                            <a class="list-group-item small" href="{{ child_link }}" title="{{ child.title }}">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                {{ child.title }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>

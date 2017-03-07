@@ -1,0 +1,37 @@
+{{ set_assets('applications/Businesses/Addons/Menubusinesses/assets/css/menubusiness.css') }}
+
+{% set businesses = callFunction( "Businesses.Addons.Menubusinesses.Models.MenubusinessesModel", 'getBusinesses' ) %}
+
+<div class="menu-businesses">
+    {% if businesses|length > 0 %}
+        {% for business in businesses %}
+
+            {% set business_url = generate_url('businesses.businesses.detail', {'id': business.id})  %}
+
+            <div class="col-sm-3">
+                <div class="menu-business">
+
+                    <a href="{{ business_url }}">
+                        <b>{{ business.name|truncate(30) }}</b>
+                    </a>
+
+                    <div class="img-wrapper">
+                        <a href="{{ business_url }}" title="{{business.name}}">
+                            <img src="{{ resized_image(business.logo_file, 150,150) }}" alt="{{ business.name }}" title="{{ business.name }}" align="left" width="150px"/>
+                        </a>
+                    </div>
+
+                    <div class="marketplace-business-addition">
+                        <i class="fa fa-clock-o"></i> Posted:  {{ business.date_created|date('d M Y H:i:s') }} <br>
+                    </div>
+
+                    <a class="btn btn-primary btn-xs btn-flat col-sm-12" href="{{ business_url }}" title="View Business">
+                        View Business
+                    </a>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>

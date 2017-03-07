@@ -1,0 +1,65 @@
+Businesses\Packages\Prices\Code\Tables\Prices:
+  table: businesses_packages_prices
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    price:
+      name: price
+      type: integer
+      length: 11
+      nullable: false
+    package_id:
+      name: package_id
+      type: integer
+      length: 11
+      nullable: false
+    no_of_days:
+      name: no_of_days
+      type: integer
+      length: 11
+      nullable: true
+    featured:
+      name: featured
+      type: integer
+      length: 11
+      nullable: true
+    published:
+      name: published
+      type: integer
+      length: 11
+      nullable: true
+    created_by:
+      name: created_by
+      type: integer
+      length: 11
+      nullable: false
+    date_created:
+      name: date_created
+      type: datetime
+      nullable: false
+    modified_by:
+      name: modified_by
+      type: integer
+      length: 11
+      nullable: false
+    date_modified:
+      name: date_modified
+      type: datetime
+      nullable: false
+  indexes:
+    package_id_index:
+      columns: [package_id]
+    created_by_index:
+      columns: [created_by]
+    modified_by_index:
+      columns: [modified_by]
+  lifecycleCallbacks:
+    prePersist:
+      - onPrePersist
+      - onPrePersistCallbacks
+    preUpdate:
+      - onPreUpdate
+      - onPreUpdateCallbacks

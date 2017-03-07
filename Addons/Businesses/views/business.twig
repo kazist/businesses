@@ -1,0 +1,29 @@
+
+{{ set_assets('applications/Businesses/Addons/Business/assets/css/style.css') }}
+
+<div class="blog-business">
+    <ul class="kazi-businesses">
+
+        {% if busiesses|length > 0 %}
+            {% for busiess in busiesses %}
+
+                <li class="clearfix">
+                    <img src="{{ resized_image(busiess.business_file,48,48) }}" class="avatar" alt="{{ busiess.title }}" title="{{ busiess.title }}" width="48px">
+                    <div class="post-businesses">
+                        <div>
+                            <a href="{{ generate_url( 'businesses.businesses.detail', {'id':busiess.id)} }}" title="{{ busiess.title }}">
+                                {{ busiess.title }}
+                            </a>
+                            (<a href="{{ generate_url( 'businesses.categories.detail', {'id':busiess.id)} }}" title="{{ busiess.category_name }} ">
+                                {{ busiess.category_name }} 
+                            </a>)
+                        </div>
+                        <div class="meta">{{ busiess.date_created|date('d M Y H:i:s') }}</div>
+                    </div>
+                </li>
+
+            {% endfor %}
+        {% endif %}
+
+    </ul>
+</div>

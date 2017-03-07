@@ -1,0 +1,108 @@
+{# empty Twig template #}
+
+{{ set_assets('applications/Businesses/assets/css/business.css') }}
+
+<script>
+    var package_prices
+            = {{ packages|json_encode()|raw }};</script>
+
+
+<form id="business-payment-form" action="{{ generate_url('businesses.businesses.save', params) }}" method="POST">
+
+    <div class="alert alert-success">
+
+        <h3 class="text-center">Pay for this business</h3>
+
+        <div>
+            <div class="col-sm-6">
+                <ul>
+                    <li><b>Status:</b> {% if not item.payment_status %}Not{% endif %} Paid</li>
+                    <li><b>Expiry:</b> {{ item.payment_expiry|default('-') }} </li>
+                    <li><b>Stages:</b>{% if not item.payment_stage %}Yes{% else %} No {% endif %}</li>
+                    <li><b>Amount:</b> {{ item.payment_amount|number_format(2) }} </li>
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <div>
+                    <b>Package</b><br>
+                    <select id="package_id" name="form[package_id]" class="form-control input-sm">
+                        <option value="">Select Package</option>
+                        {% for package in packages %}
+                            <option value="{{ package.id }}" {% if package.id == item.package_id %}selected{% endif %}>{{ package.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    <b>Package Price</b><br>  
+                    <select id="package_price_id" name="form[package_price_id]" class="form-control input-sm">
+                        <option value="">Select Price</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="clr"></div>
+        <br>
+
+        <div class="text-center">
+            <a class="btn btn-danger btn-sm" href="{{ generate_url('businesses.businesses',{'view':'mylisting'}) }}" title='Cancel'>Cancel</a>
+            <input class="btn btn-success btn-sm" name="id" type="submit" value="Proceed to Payment">
+
+        </div>
+
+        {{ forms.input('id', 'hidden', item.id ) }} 
+        {{ forms.input('new_payment', 'hidden', 1 ) }} 
+
+        {{ forms.input('_token' ) }} 
+    </div>
+</form>
+
+<script>
+
+
+            jQuery(document).ready(function () {
+
+        changePricing(jQuery('#package_id').val());
+
+        jQuery('#package_id').change(function () {
+            changePricing(jQuery('#package_id').val());
+        });
+
+        jQuery('#business-payment-form').submit(function () {
+
+            var package_id = jQuery('#package_id').val();
+            var package_price_id = jQuery('#package_price_id').val();
+
+            if (!parseInt(package_id)) {
+                alert('Package is Required Field');
+                return false;
+            }
+            if (!parseInt(package_price_id)) {
+                alert('Package Price is Required Field');
+                return false;
+            }
+        });
+    });
+
+    function changePricing(package_id) {
+
+        if (parseInt(package_id)) {
+
+            console.log(package_id);
+
+            var prices = package_prices[package_id]['prices'];
+
+            var html = '<option value="">Select Package Prices</option>';
+
+            jQuery.each(prices, function (index, price) {
+                html += '<option value="' + price['id'] + '">$' + price['price'] + ' For ' + price['no_of_days'] + ' Days</option>';
+            });
+
+            jQuery('#package_price_id').html(html);
+
+        }
+    }
+
+</script>
+
+

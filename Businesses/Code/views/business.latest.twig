@@ -1,0 +1,28 @@
+{# empty Twig template #}
+
+{% set params = { 'business_id': business_id, 'action': 'latest' } %}
+{% set product_list = callFunction( "Businesses.Businesses.Code.Models.BusinessesModel", 'getBusinessProducts', params ) %}
+
+<div class="business-products">
+    {% if product_list|length > 0 %}
+        {% for product in product_list %}
+            {% set product_url =  generate_url('businesses.businesses.detail', {'id': product.id}) %}
+            <div class="col-sm-4 business-product">
+                <h4>
+                    <a href="{{ product_url }}" title='{{ product.title }}'>
+                        {{ product.title }}
+                    </a>
+                </h4>
+                <a href="{{ product_url }}">
+                    <img src="{{ resized_image(product.images.0.file,150,150) }}" title="{{ product.title }}" alt="{{ product.title }}" />
+                </a>
+                <br>
+                <br>
+                <a class="col-sm-12 btn btn-success btn-xs btn-flat" href="{{ product_url }}" title='View Product'>View Product</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        No Products
+    {% endif %}
+</div>
+

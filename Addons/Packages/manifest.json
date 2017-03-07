@@ -1,0 +1,10 @@
+{
+    "name": "packages",
+    "title": "Packages Listing",
+    "explanation": "Packages Listing",
+    "description": "Packages Listing",
+    "version": 1,
+    "icon": "assets\/businesses\/addons\/packages\/icon.png",
+    "extension": "addon",
+    "path": "businesses\/addons\/packages\/"
+}

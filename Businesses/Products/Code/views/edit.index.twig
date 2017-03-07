@@ -1,0 +1,74 @@
+{# empty Twig template #}
+{% import "form.macro.twig" as forms %}
+
+{{ set_assets('applications/Businesses/assets/css/business.css') }}
+{{ set_assets('applications/Businesses/assets/js/business.js') }}
+
+<h3>Edit Product</h3>
+<hr>
+
+<form id="main-edit-form" action="{{ generate_url('businesses.businesses.products.save') }}" class="form-horizontal" method="post" role="form" enctype="multipart/form-data">
+
+    <div class="well well-sm">Product Detail </div>
+    <div>
+        <div class="col-md-8">
+            {{ forms.input('title', 'text', item.title, 'Title') }}
+            {{ forms.input('business_id', 'select', item.business_id|default(business_id), 'Business', null, null, null, null, businesses) }}
+        </div>
+
+    </div> 
+
+    <div class="clearfix"></div>
+
+    <div class="well well-sm">Images Detail </div>
+    <div class="photos">
+        {% if item.photos|length > 0 %}
+            {% for image in item.photos %}
+                <div class="photo photo-input">
+                    <a href="{{ generate_url('businesses.businesses.products.deleteimage',{'business_id=': item.id, 'business_image_id' : image.id} ) }}" class="btn btn-danger btn-xs btn-flat business-photo-delete" title='Delete'>
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <div class="photo-wrapper">
+                        {% if image.file != '' %}
+                            <img src="{{ resized_image(image.file, 90,90) }}" alt="{{ image.title }}" title="{{ image.title }}">
+                        {% else %}
+                            <i class="fa fa-plus"></i> Add Photo
+                        {% endif %}
+                    </div>
+
+                    <input class="upload_photo" type="file"  name="form[photo][]" style="display: none;">
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="photo photo-input">
+            <div class="photo-wrapper">
+                <i class="fa fa-plus"></i> Add Photo
+            </div>
+            <input class="upload_photo" type="file"  name="form[photo][]" style="display: none;">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="well well-sm">Description Detail </div>
+    <div class="col-sm-12">
+        {{ forms.input('description', 'editor', item.description) }} 
+    </div> 
+    <div class="clearfix"></div>
+
+
+    {{ forms.input('id', 'hidden', item.id) }}
+    {{ forms.input('view', 'hidden', 'edit') }}
+    {{ forms.input('twig', 'hidden', 'index') }}
+    {{ forms.input('return_url', 'hidden', null) }}
+
+    <a class="btn btn-danger btn-sm" href="{{ generate_url('businesses.businesses.products') }}" title='Cancel'>Cancel</a>
+    <input class="btn btn-success btn-sm" name="id" type="submit" value="Save">
+    <br>
+    <br>
+
+    {{ forms.input('_token' ) }}
+
+</form>
+
+

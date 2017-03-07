@@ -1,0 +1,10 @@
+{
+    "name": "menubusinesses",
+    "title": "MenuBusinesses Listing",
+    "explanation": "MenuBusinesses Listing",
+    "description": "MenuBusinesses Listing",
+    "version": 1,
+    "icon": "assets\/businesses\/addons\/menubusinesses\/icon.png",
+    "extension": "addon",
+    "path": "businesses\/addons\/menubusinesses\/"
+}

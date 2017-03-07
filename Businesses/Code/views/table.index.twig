@@ -1,0 +1,6 @@
+ 
+{% if view == 'mylisting' %} 
+    {% include "mylisting.index.twig" ignore missing %}  
+{% else %}
+    {% include "listing.index.twig" ignore missing %}  
+{% endif %}

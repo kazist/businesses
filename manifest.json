@@ -1,0 +1,9 @@
+{
+    "name": "businesses",
+    "title": "Businesses Listing",
+    "icon": "icons\/businesses.png",
+    "extension": "component",
+    "path": "businesses\/",
+    "description": "Businesses Listing",
+    "version": 1
+}

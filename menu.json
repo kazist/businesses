@@ -1,0 +1,29 @@
+{
+    "title": "Businesses",
+    "description": "Businesses Advertisement",
+    "alias": "businesses",
+    "icon": "fa-picture-o",
+    "home_link": "businesses\/businesses",
+    "is_core": "1",
+    "menulist": [{
+            "title": "Businesses",
+            "alias": "admin_businesses_businesses",
+            "url": "admin/businesses/businesses",
+            "children": []
+        }, {
+            "title": "Categories",
+            "alias": "admin_businesses_categories",
+            "url": "admin/businesses/categories",
+            "children": []
+        }, {
+            "title": "Packages",
+            "alias": "admin_businesses_packages",
+            "url": "admin/businesses/packages",
+            "children": [{
+                    "title": "Packages Prices",
+                    "alias": "admin_businesses_packages_prices",
+                    "url": "admin/businesses/packages/prices",
+                    "children": []
+                }]
+        }]
+}

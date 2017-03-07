@@ -1,0 +1,64 @@
+Businesses\Categories\Code\Tables\Categories:
+  table: businesses_categories
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    parent_id:
+      name: parent_id
+      type: integer
+      length: 11
+      nullable: true
+    title:
+      name: title
+      type: string
+      length: 255
+      nullable: false
+    description:
+      name: description
+      type: text
+      nullable: false
+    published:
+      name: published
+      type: integer
+      length: 11
+      nullable: true
+    featured:
+      name: featured
+      type: integer
+      length: 11
+      nullable: true
+    created_by:
+      name: created_by
+      type: integer
+      length: 11
+      nullable: false
+    date_created:
+      name: date_created
+      type: datetime
+      nullable: false
+    modified_by:
+      name: modified_by
+      type: integer
+      length: 11
+      nullable: false
+    date_modified:
+      name: date_modified
+      type: datetime
+      nullable: false
+  indexes:
+    parent_id_index:
+      columns: [parent_id]
+    created_by_index:
+      columns: [created_by]
+    modified_by_index:
+      columns: [modified_by]
+  lifecycleCallbacks:
+    prePersist:
+      - onPrePersist
+      - onPrePersistCallbacks
+    preUpdate:
+      - onPreUpdate
+      - onPreUpdateCallbacks

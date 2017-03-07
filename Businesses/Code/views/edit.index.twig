@@ -1,0 +1,264 @@
+{# empty Twig template #}
+{% import "form.macro.twig" as forms %}
+
+{{ set_assets('applications/Businesses/assets/css/business.css') }}
+{{ set_assets('applications/Businesses/assets/js/business.js') }}
+{{ set_assets('applications/Businesses/assets/js/business_photos.js') }}
+
+<h3 class="component-header">Edit Business</h3>
+
+<form id="main-edit-form" action="{{ generate_url('businesses.businesses.save') }}" class="form-horizontal" method="post" role="form" enctype="multipart/form-data">
+
+    <div class="well well-sm">Business Detail </div>
+    <div>
+        <div class="col-md-8">
+            {{ forms.input('name', 'text', item.name, 'Name') }}
+
+            <div class="form-group images-group">
+                <label for="title" class="col-sm-3 control-label">Categories</label>
+                <div class="col-sm-9 kazicode-form-field">
+
+                    <select id="category_id" class="form-control input-sm category_id" name="form[category_id]">
+                        <option value="">--Select --</option>
+                        {% if categories|length > 0 %}
+                            {% for category in categories %}
+                                <optgroup label="{{ category.title }}">
+                                    {% if category.children|length > 0 %}
+                                        {% for child in category.children %}
+                                            <option value="{{ child.id }}" {% if item.category_id == child.id %}selected="selected"{% endif %}>{{ child.title }}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </optgroup>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <b> Logo</b>
+            <div class="photo photo-input">
+                <div class="photo-wrapper">
+                    {% if item.logo.file != '' %}
+                        <img src="{{ resized_image(item.logo_file,90,90) }}" alt="{{ item.logo.title }}" title="{{ item.logo.title }}">
+                    {% else %}
+                        <i class="fa fa-plus"></i> Add Photo
+                    {% endif %}
+                </div>
+                <input class="upload_photo" type="file"  name="form[logo]" style="display: none;">
+            </div>
+        </div>  
+    </div> 
+    <div class="clearfix"></div>
+
+    {% if packages|length > 0 %}
+        <div class="well well-sm">Package Details </div>
+
+        <div class="form-group price-group">
+            <label for="title" class="col-sm-3 control-label">Package</label>
+            <div class="col-sm-9 kazicode-form-field">
+
+                <div class="col-sm-6 package_id">
+                    {% for package in packages %}
+                        <div class="package_input package_input_{{ package.id }}">
+                            <input name="form[package_id]" type="radio" value="{{ package.id }}" {% if item.package_id == package.id %}checked="checked"{% endif %}>
+                            <b>{{ package.title }}</b>
+                        </div> 
+                    {% endfor %}
+                </div>
+
+                {% if package_prices|length > 0 %}
+                    <div class="col-sm-6 package_price_id">
+                        {% for package_price in package_prices %}
+                            <div class="package_price_input package_price_input_{{ package_price.package_id }}">
+                                <input name="form[package_price_id]" type="radio" value="{{ package_price.id }}" {% if item.package_price_id == package_price.id %}checked="checked"{% endif %}>
+                                <b>{{ package_price.price }} Ksh for  {{ package_price.no_of_days }} days</b>
+                            </div> 
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% if item.package_id or item.package_price_id %}
+                    <div class="clearfix"></div>
+                    <div class="package_changed" style="display:none;">
+                        Your have Changed Package and Package Price. Changes will take effect after clicking Save.
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    {% endif %}
+
+
+    <div class="well well-sm">Images Detail </div>
+    <div class="photos">
+        {% if item.images|length > 0 %}
+            {% for image in item.images %}
+                <div class="photo photo-input">
+                    <a href="{{ generate_url('businesses.businesses.deleteimage', {'business_id=': item.id, 'business_image_id':image.id }) }}" class="btn btn-danger btn-xs btn-flat business-photo-delete" title="Delete {{ image.title }}">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <div class="photo-wrapper">
+                        {% if image.file != '' %}
+                            <img src="{{ resized_image(image.file, 90,90) }}" alt="{{ image.title }}" title="{{ image.title }}">
+                        {% else %}
+                            <i class="fa fa-plus"></i> Add Photo
+                        {% endif %}
+                    </div>
+
+                    <input class="upload_photo" type="file"  name="form[photo][]" style="display: none;">
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="photo photo-input">
+            <div class="photo-wrapper">
+                <i class="fa fa-plus"></i> Add Photo
+            </div>
+            <input class="upload_photo" type="file"  name="form[photo][]" style="display: none;">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="well well-sm">Location Detail </div>
+    <div>
+        <div class="col-md-8">
+            {{ forms.input('country_id', 'select', item.country_id, 'Country', null, null, null, null, countries) }}
+            {{ forms.input('location_id', 'select', item.location_id, 'Location', null, null, null, null, locations) }}
+            {{ forms.input('city', 'text', item.city, 'City/Town') }}
+        </div>
+
+        <div class="col-md-4">
+            <div class="map">
+                <div id="map-canvas" style="width: 100%; height: 200px;"></div>
+                {{ forms.input('latitude', 'hidden', item.latitude) }}
+                {{ forms.input('longitude', 'hidden',  item.longitude) }}
+                <div class="map-latitude-longitude">
+                    {% if item.latitude != '' %}
+                        Lat:{{ item.latitude }} - Lon:{{ item.longitude }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>  
+    </div> 
+    <div class="clearfix"></div>   
+
+
+    <div class="well well-sm">Contact Detail </div>
+    <div>
+        {{ forms.input('address', 'text', item.address, 'Address') }}
+        {{ forms.input('phone', 'text', item.phone, 'Phone') }}
+        {{ forms.input('email', 'text', item.email, 'Email') }}
+        {{ forms.input('website', 'text', item.website, 'Website') }}
+        {{ forms.input('physical_location', 'textarea', item.physical_location, 'Physical Location') }}
+    </div> 
+    <div class="clearfix"></div>
+
+
+    <div class="well well-sm">Profile Detail </div>
+    <div class="col-sm-12">
+        {{ forms.input('profile', 'editor', item.profile) }} 
+    </div> 
+    <div class="clearfix"></div>
+
+
+    {{ forms.input('id', 'hidden', item.id) }}
+    {{ forms.input('view', 'hidden', 'edit') }}
+    {{ forms.input('twig', 'hidden', 'index') }}
+    {{ forms.input('return_url', 'hidden', null) }}
+
+    <a class="btn btn-danger btn-sm" href="{{ generate_url('businesses.businesses') }}" title="Cancel">Cancel</a>
+    <input class="btn btn-success btn-sm" name="id" type="submit" value="Save">
+    <br>
+    <br>
+
+    {{ forms.input('_token' ) }} 
+
+</form>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBM7aNBTgvwJyUwTqkbwAYa8mC7gZRItPs"></script>
+
+<script>
+
+    var marker;
+    var map;
+
+    function initialize() {
+        var mapCanvas = document.getElementById('map-canvas');
+        var myLatlng = new google.maps.LatLng({{ item.latitude|default('-1.2833300') }}, {{ item.longitude|default('36.8166700') }});
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 6,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        map = new google.maps.Map(mapCanvas, mapOptions);
+
+        marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map
+        });
+
+        google.maps.event.addListener(map, "click", function (event) {
+            // get lat/lon of click
+            var clickLat = event.latLng.lat();
+            var clickLon = event.latLng.lng();
+
+            // show in input box
+            document.getElementById("latitude").value = clickLat.toFixed(5);
+            document.getElementById("longitude").value = clickLon.toFixed(5);
+
+            marker.setPosition(event.latLng);
+            map.setCenter(event.latLng);
+
+            setDescription(clickLat, clickLon);
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    jQuery(document).ready(function () {
+        jQuery('#country_id').change(function () {
+            setMarkerbyAddress();
+        });
+
+        jQuery('#city').blur(function () {
+            setMarkerbyAddress();
+        });
+    });
+
+    function setMarkerbyAddress() {
+
+        var country = jQuery('#country_id').find('option:selected').text();
+        var city = jQuery('#city').val();
+
+        address = country + ' ' + city;
+
+        var geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode({'address': address}, function (results, status) {
+
+            if (status == google.maps.GeocoderStatus.OK) {
+                var latitude = results[0].geometry.location.lat();
+                var longitude = results[0].geometry.location.lng();
+
+                setDescription(latitude, longitude);
+
+                var myLatlng = new google.maps.LatLng(latitude, longitude);
+
+                map.setZoom(9);
+                map.setCenter(myLatlng);
+                marker.setPosition(myLatlng);
+            }
+        });
+    }
+
+    function setDescription(latitude, longitude) {
+        jQuery('.map-latitude-longitude').html('Lat:' + latitude + ' - ' + 'Lon:' + longitude);
+    }
+
+
+</script>  
