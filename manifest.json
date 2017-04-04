@@ -1,9 +1,9 @@
 {
-    "name": "businesses",
+    "name": "kazist/businesses",
     "title": "Businesses Listing",
     "icon": "icons\/businesses.png",
     "extension": "component",
-    "path": "businesses\/",
+    "path": "applications/Businesses/",
     "description": "Businesses Listing",
     "version": 1
 }
