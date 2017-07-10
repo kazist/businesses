@@ -2,27 +2,31 @@
     "title": "Businesses",
     "description": "Businesses Advertisement",
     "alias": "businesses",
-    "icon": "fa-picture-o",
+    "icon": "fa fa-briefcase",
     "home_link": "businesses\/businesses",
     "is_core": "1",
     "menulist": [{
             "title": "Businesses",
             "alias": "admin_businesses_businesses",
             "url": "admin/businesses/businesses",
+            "icon": "fa fa-briefcase",
             "children": []
         }, {
             "title": "Categories",
             "alias": "admin_businesses_categories",
             "url": "admin/businesses/categories",
+            "icon": "fa fa-navicon",
             "children": []
         }, {
             "title": "Packages",
             "alias": "admin_businesses_packages",
             "url": "admin/businesses/packages",
+            "icon": "fa fa-archive",
             "children": [{
                     "title": "Packages Prices",
                     "alias": "admin_businesses_packages_prices",
                     "url": "admin/businesses/packages/prices",
+                    "icon": "fa fa-money",
                     "children": []
                 }]
         }]
