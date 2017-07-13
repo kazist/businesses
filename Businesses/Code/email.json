@@ -3,37 +3,37 @@
             "tracking_id": "1",
             "unique_name": "businesses.businesses.sendmessage",
             "subject": "Advert Message : {{ message.subject }}",
-            "sms": "Advert Message : {{ message.subject }}",
+            "short_body": "Advert Message : {{ message.subject }}",
             "body": "<p>Hi {{user.name}},<\/p>\r\n<p>You have a new message For On You Business Post.<\/p>\r\n<p>&nbsp;<\/p>\r\n<p><strong>Message:<\/strong> {{message.message}}<\/p>\r\n<p><strong>Email:<\/strong> {{message.email}}<\/p>\r\n<p><strong>Phone:<\/strong> {{message.phone}}<\/p>\r\n<p>&nbsp;<\/p>\r\n<p>To View your business click link below.<\/p>\r\n<p><a href=\"{{business.url}}\">{{business.title}}<\/a><\/p>"
         }, {
             "tracking_id": "2",
             "unique_name": "businesses.businesses.sendmessage.thankyou",
             "subject": "Message sent Successful : {{ message.subject }}",
-            "sms": "Message sent Successful : {{ message.subject }}",
+            "short_body": "Message sent Successful : {{ message.subject }}",
             "body": "<p>Hi {{message.name}},<\/p>\r\n<p>Your&nbsp;message was sent Successfully.&nbsp;<\/p>\r\n<p><strong>Message:<\/strong> {{message.message}}<\/p>\r\n<p><strong>Email:<\/strong> {{message.email}}<\/p>\r\n<p><strong>Phone:<\/strong> {{message.phone}}<\/p>\r\n<p>To View this&nbsp;business click link below.<\/p>\r\n<p><a href=\"{{business.url}}\">{{business.title}}<\/a><\/p>"
         }, {
             "tracking_id": "3",
             "unique_name": "businesses.businesses.paymentsuccessful",
             "subject": "Payment Process Completed Successfully",
-            "sms": "Payment Process Completed Successfully",
+            "short_body": "Payment Process Completed Successfully",
             "body": "Client {{ user.name }},\r\n\r\nYour payment for Advert was completed successful.\r\n\r\nThank you for paying for you advert  it will now appear in featured adverts list.\r\n\r\n If you need any help, please let us know so that we can assist you.\r\n\r\nThanks,"
         }, {
             "tracking_id": "4",
             "unique_name": "businesses.businesses.paymentfail",
             "subject": "Payment Process Failed",
-            "sms": "Payment Process Failed",
+            "short_body": "Payment Process Failed",
             "body": "Client {{ user.name }},\r\n\r\nYour payment for Advert did not process. This is sometimes due to payment of less amount, fraudalent Payment, credit card decline, change in expiration date or system issue.\r\n\r\nFirst, please reply back to confirm that you received this notice and that you are working to resolve the issue.\r\n\r\nAlso Contact Administrator to check the issue once more.\r\n\r\n If you need any help, please let us know so that we can assist you.\r\n\r\nThanks,"
         }, {
             "tracking_id": "5",
             "unique_name": "businesses.businesses.paymentcancel",
             "subject": "Payment Process Canceled",
-            "sms": "Payment Process Canceled",
+            "short_body": "Payment Process Canceled",
             "body": "Client {{ user.name }},\r\n\r\nYour payment for Advert did not process. The process was canceled.\r\n\r\nPlease Verify if You it was initiated by you.\r\n\r\nAlso Contact Administrator to check the issue once more.\r\n\r\n If you need any help, please let us know so that we can assist you.\r\n\r\nThanks,"
         }, {
             "tracking_id": "6",
             "unique_name": "businesses.businesses.paymentcomplete",
             "subject": "Payment Process Completed",
-            "sms": "Payment Process Completed",
+            "short_body": "Payment Process Completed",
             "body": "Client {{ user.name }},\r\n\r\nYour payment for Advert was completed successful.\r\n\r\nThank you upgrading you can start to build you team and use our website as an upgraded member.\r\n\r\n If you need any help, please let us know so that we can assist you.\r\n\r\nThanks,"
         }],
     "scheduled": [{
