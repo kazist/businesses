@@ -4,6 +4,7 @@
     "alias": "businesses",
     "icon": "fa fa-briefcase",
     "home_link": "businesses\/businesses",
+    "path": "applications/Businesses",
     "is_core": "1",
     "menulist": [{
             "title": "Businesses",
